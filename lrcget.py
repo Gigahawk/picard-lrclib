@@ -379,6 +379,7 @@ def process_response(
             is_plain = True
         if not isinstance(lyrics, str):
             return
+        lyrics = "[lrclib_id:{}]\n".format(response.get("id", 0)) + lyrics
 
         for file in linked_files:
             ext = ".txt" if (is_plain and config.setting["plain_as_txt"]) else ".lrc"
