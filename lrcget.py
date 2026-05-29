@@ -195,10 +195,14 @@ def show_search_table(parent, query, response, request_callback):
             table.setItem(row, 0, num_item)
 
             has_synced = item.get("syncedLyrics")
+            log.warning(item)
+            duration = item.get("duration", None)
+            if duration is None:
+                duration = 0
             values = [
                 item.get("trackName", ""),
                 item.get("artistName", ""),
-                format_durasi(item.get("duration", 0)),
+                format_durasi(duration),
                 item.get("albumName", ""),
                 "V" if has_synced else "X",
             ]
